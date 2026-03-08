@@ -28,7 +28,6 @@ Booking@UMU is a multi-module Laravel + React (Inertia) platform for academic bo
 - Nginx as the web server (with HTTPS in local dev).
 - Git + GitHub for collaboration.
 
-
 We use feature branches and Pull Requests (PRs) on top of a protected `main` branch.
 
 For a high-level project overview and setup, see **[README.md](./README.md)**.  
@@ -51,9 +50,9 @@ The team is organized into:
 
 - Work primarily in `resources/js/Pages`, `resources/js/Components`, and styling.
 - Implement React pages for:
-  - Academic Booking
-  - Hostel Allocation
-  - Hospital Services
+  - Phase 1: Hostel Allocation
+  - Phase 2: Academic Booking
+  - Phase 3: Hospital Services
 - Ensure good UX and responsive layouts.
 - Coordinate with Design/UX devs.
 
@@ -72,7 +71,7 @@ The team is organized into:
 - Create manual test plans for new features.
 - Verify bug fixes and regressions before merging/ releasing.
 
->QA engineers are expected to perform basic security testing following PortSwigger Web Security Academy guidance, including checks for input validation issues (XSS, SQL injection), authentication and access control flaws, CSRF, file upload issues, and common misconfigurations before approving changes.
+> QA engineers are expected to perform basic security testing following PortSwigger Web Security Academy guidance, including checks for input validation issues (XSS, SQL injection), authentication and access control flaws, CSRF, file upload issues, and common misconfigurations before approving changes.
 
 ### Design and UX Developers
 
@@ -80,7 +79,7 @@ The team is organized into:
 - Provide UI specs, components, and UX flows.
 - Review implementations and open design-related issues.
 - May contribute directly to React components and CSS.
->**NB:** Contact the Led Devs for access to our Figma for Eduaction Team Space.
+  > **NB:** Contact the Led Devs for access to our Figma for Eduaction Team Space.
 
 ---
 
@@ -158,50 +157,53 @@ Branch types:
 - Keep PRs focused on one logical change.
 
 ---
+
 ## GitHub SSH Setup (Git ⇄ GitHub)
+
 All approved contributors should use SSH keys to interact with GitHub (clone, push, pull) instead of HTTPS passwords.
 
-1. Generate an SSH key pair
-On your development machine (Linux/WSL/macOS/Windows):
+1.  Generate an SSH key pair
+    On your development machine (Linux/WSL/macOS/Windows):
 
-   ```bash
-    ssh-keygen -t ed25519 -C "your-email@example.com"
-   ```
-    When prompted for file path, you can accept the default:
+    ```bash
+     ssh-keygen -t ed25519 -C "your-email@example.com"
+    ```
 
-   `~/.ssh/id_ed25519`
+        When prompted for file path, you can accept the default:
+
+    `~/.ssh/id_ed25519`
 
     Optionally set a passphrase for extra security. This creates:
 
-    Private key:  `~/.ssh/id_ed25519 `
+    Private key: `~/.ssh/id_ed25519 `
 
-    Public key:   `~/.ssh/id_ed25519.pub `
+    Public key: `~/.ssh/id_ed25519.pub `
 
-2. Add SSH key to ssh-agent (recommended)
-Start the agent and add your key:
+2.  Add SSH key to ssh-agent (recommended)
+    Start the agent and add your key:
 
-   ```bash
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_ed25519
-   ```
+    ```bash
+     eval "$(ssh-agent -s)"
+     ssh-add ~/.ssh/id_ed25519
+    ```
 
-3. Add your SSH key to GitHub
-Show your public key:
+3.  Add your SSH key to GitHub
+    Show your public key:
 
-   ```bash
-    cat ~/.ssh/id_ed25519.pub
-    Copy the entire output.
-   ```
+    ```bash
+     cat ~/.ssh/id_ed25519.pub
+     Copy the entire output.
+    ```
 
-    Go to GitHub:
-    - User Settings* → SSH and GPG keys → New SSH key
-    - Title: something like  `Booking@UMU Dev Laptop `
-    - Paste the public key.
-    - Save.
+        Go to GitHub:
+        - User Settings* → SSH and GPG keys → New SSH key
+        - Title: something like  `Booking@UMU Dev Laptop `
+        - Paste the public key.
+        - Save.
 
-      ***\*Click on your GitHub acc icon to access user settings***
+          ***\*Click on your GitHub acc icon to access user settings***
 
-4. Test the connection
+4.  Test the connection
 
     ```bash
       ssh -T git@github.com
@@ -209,15 +211,16 @@ Show your public key:
 
     You should see a message like:
 
-     ```text
-          Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.
-     ```
+    ```text
+         Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.
+    ```
 
-5. Clone using SSH
+5.  Clone using SSH
 
     From now on, always clone using the SSH URL. Continue below to clone the repo.
 
 ---
+
 ## How to Run Booking@UMU Locally
 
 Below is a **step-by-step** guide for running Booking@UMU locally with Nginx on Windows (via WSL2), macOS, or Linux.
@@ -236,196 +239,213 @@ You will need:
 > Note: The exact commands differ per OS, but the structure is the same: install stack → configure database → configure Nginx → run Laravel and Vite.
 
 ---
-*After Installing the prerequisites depending on your OS(refer to AI or Google Search) continue a show below:*
 
-- ### [Windows Users](#Windows (WSL2 + Ubuntu + Nginx))
-- ### [Mac Users](#MacOS (Homebrew + Nginx))
-- ### [Linux Users](#Linux (Ubuntu + Nginx))
+_After Installing the prerequisites depending on your OS(refer to AI or Google Search) continue a show below:_
+
+- ### [Windows Users](#windows-wsl2--ubuntu--nginx)
+- ### [Mac Users](#macos--homebrew--nginx)
+- ### [Linux Users](#linux--ubuntu--nginx)
+
 ---
 
 ### Windows (WSL2 + Ubuntu + Nginx)
 
-1. **Open WSL2 Ubuntu**
+1.  **Install and Open WSL2 Ubuntu**
+    Open Windows Terminal 'Win' Key, then search 'Terminal'. Right click on the app and select 'Run as Administrator'
 
-   ```bash
-   wsl
-   ```
+    Run:
 
-2. Install Composer, Node, mkcert
-Install composer and node using your preferred method, then:
-
-    ```bash
-      sudo apt install -y mkcert libnss3-tools
-      mkcert -install
+    ```powershell
+        wsl --install
+        wsl
     ```
 
-3. **Clone Booking@UMU**
+2.  Install Composer, Node, mkcert
+    Install composer and node using your preferred method, then:
 
-   ```bash
-     cd /var/www
-     sudo mkdir -p booking-umu
-     sudo chown -R $USER:$USER booking-umu
-     cd booking-umu
+        ```bash
+          sudo apt install -y mkcert libnss3-tools
+          mkcert -install
+        ```
 
-     git clone git@github.com:muliratendo/booking-app.git
+3.  **Clone Booking@UMU**
 
-   ```
+    > [Setup GitHub SSH before proceeding](github-ssh-setup-git-github)
 
-4. **Install backend and frontend dependencies**
+    ```bash
+      cd /var/www
+      sudo mkdir -p booking-umu
+      sudo chown -R $USER:$USER booking-umu
+      cd booking-umu
 
-   ```bash
-   composer install
-   cp .env.example .env
-   php artisan key:generate
+      git clone git@github.com:muliratendo/booking-umu.git
 
-   npm install
-   ```
+    ```
+
+4.  **Install backend and frontend dependencies**
+
+    ```bash
+    composer install
+    cp .env.example .env
+    php artisan key:generate
+
+    npm install
+    ```
 
     Create MySQL database
 
-   ```bash
-   sudo mysql
+    ```bash
+    sudo mysql
 
-   CREATE DATABASE booking_umu CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-   CREATE USER 'booking_admin'@'localhost' IDENTIFIED BY 'strong_password_here';
-   GRANT ALL PRIVILEGES ON booking_umu.* TO 'booking_admin'@'localhost';
-   FLUSH PRIVILEGES;
-   EXIT;
-   ```
-    \*Replace '*strong_password_here*' with a strong password including;
-   ```text
-    - Capital letters
-    - Small letters
-    - Numbers
-    - Symbols
-   ```
+    CREATE DATABASE booking_umu CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    CREATE USER 'booking_admin'@'localhost' IDENTIFIED BY 'strong_password_here';
+    GRANT ALL PRIVILEGES ON booking_umu.* TO 'booking_admin'@'localhost';
+    FLUSH PRIVILEGES;
+    EXIT;
+    ```
 
-   Update `.env`:
+    \*Replace '_strong_password_here_' with a strong password including;
 
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=booking_umu
-   DB_USERNAME=booking_admin
-   DB_PASSWORD=strong_password_here
-   ```
-    \*Replace '*strong_password_here*' with the strong password you created.
+    ```text
+     - Capital letters
+     - Small letters
+     - Numbers
+     - Symbols
+    ```
 
-   Run migrations:
+    Update `.env`:
 
-   ```bash
-   php artisan migrate
-   ```
-5. **Generate local HTTPS cert for booking.umu**
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=booking_umu
+    DB_USERNAME=booking_admin
+    DB_PASSWORD=strong_password_here
+    ```
+
+    \*Replace '_strong_password_here_' with the strong password you created.
+
+    Run migrations:
+
+    ```bash
+    php artisan migrate
+    ```
+
+5.  **Generate local HTTPS cert for booking.umu**
 
     From your project or a certs directory:
 
     ```bash
       mkcert booking.umu
     ```
+
     This creates e.g.:
     - `booking.umu.pem`
     - `booking.umu-key.pem`
 
     Move them to a stable path
+
     ```bash
       sudo mkdir -p /etc/ssl/booking-umu
       sudo mv booking.umu.pem /etc/ssl/booking-umu/
       sudo mv booking.umu-key.pem /etc/ssl/booking-umu/
     ```
+
     Adjust ownership permissions as needed:
 
-   ```bash
-     sudo chown root:root /etc/ssl/booking-umu/booking.umu.pem /etc/ssl/booking-umu/booking.umu-key.pem
-     sudo chmod 600 /etc/ssl/booking-umu/booking.umu-key.pem
-     sudo chmod 644 /etc/ssl/booking-umu/booking.umu.pem
+    ```bash
+      sudo chown root:root /etc/ssl/booking-umu/booking.umu.pem /etc/ssl/booking-umu/booking.umu-key.pem
+      sudo chmod 600 /etc/ssl/booking-umu/booking.umu-key.pem
+      sudo chmod 644 /etc/ssl/booking-umu/booking.umu.pem
     ```
 
-6. **Configure Nginx (WSL)**
+6.  **Configure Nginx (WSL)**
 
-   Create a site config:
+    Create a site config:
 
-   ```bash
-   sudo nano /etc/nginx/sites-available/booking-umu.conf
-   ```
-   \*Press 'ALT + M' to toggle mouse support *on* or *off*
+    ```bash
+    sudo nano /etc/nginx/sites-available/booking-umu.conf
+    ```
 
-   Paste:
+    \*Press 'ALT + M' to toggle mouse support _on_ or _off_
 
-   ```nginx
-   server {
-            listen 80;
-            listen [::]:80;
-            server_name booking.umu;
-            return 301 https://$host$request_uri;
-    }
+    Paste:
 
+    ```nginx
     server {
-            listen 443 ssl;
-            listen [::]:443 ssl;
-            server_name booking.umu;
+             listen 80;
+             listen [::]:80;
+             server_name booking.umu;
+             return 301 https://$host$request_uri;
+     }
 
-            ssl_certificate     /etc/ssl/booking-umu/booking.umu.pem;
-            ssl_certificate_key /etc/ssl/booking-umu/booking.umu-key.pem;
+     server {
+             listen 443 ssl;
+             listen [::]:443 ssl;
+             server_name booking.umu;
 
-            root /var/www/booking-umu/public;
-            index index.php index.html;
+             ssl_certificate     /etc/ssl/booking-umu/booking.umu.pem;
+             ssl_certificate_key /etc/ssl/booking-umu/booking.umu-key.pem;
 
-            add_header X-Frame-Options "SAMEORIGIN";
-            add_header X-Content-Type-Options "nosniff";
+             root /var/www/booking-umu/public;
+             index index.php index.html;
 
-            location / {
-                try_files $uri $uri/ /index.php?$query_string;
-            }
+             add_header X-Frame-Options "SAMEORIGIN";
+             add_header X-Content-Type-Options "nosniff";
 
-            location ~ \.php$ {
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/var/run/php/php-fpm.sock;
-            }
+             location / {
+                 try_files $uri $uri/ /index.php?$query_string;
+             }
 
-            location ~ /\.ht {
-                deny all;
-            }
-    }
+             location ~ \.php$ {
+                 include snippets/fastcgi-php.conf;
+                 fastcgi_pass unix:/var/run/php/php-fpm.sock;
+             }
 
-   ```
-    \*To save and exit *Nano Editor*, press 'CTRL + X' then 'y' then 'ENTER' Key to save and exit nano.
+             location ~ /\.ht {
+                 deny all;
+             }
+     }
 
-   Enable site and reload Nginx:
+    ```
 
-   ```bash
-   sudo ln -s /etc/nginx/sites-available/booking-umu.conf /etc/nginx/sites-enabled/
-   sudo rm /etc/nginx/sites-enabled/default 2>/dev/null || true
-   sudo nginx -t
-   sudo service nginx reload
-   ```
+    \*To save and exit _Nano Editor_, press 'CTRL + X' then 'y' then 'ENTER' Key to save and exit nano.
 
-7. **Map host name in Windows**
+    Enable site and reload Nginx:
 
-   Edit `C:\Windows\System32\drivers\etc\hosts` in Windows using VS Code:
+    ```bash
+    sudo ln -s /etc/nginx/sites-available/booking-umu.conf /etc/nginx/sites-enabled/
+    sudo rm /etc/nginx/sites-enabled/default 2>/dev/null || true
+    sudo nginx -t
+    sudo service nginx reload
+    ```
 
-   ```text
-   ::1 booking.umu
-   127.0.0.1 booking.umu
-   ::1 www.booking.umu
-   127.0.0.1 www.booking.umu
-   ```
-   ...and save as Administrator.
+7.  **Map host name in Windows**
 
-8. **Run Vite dev server**
+    Edit `C:\Windows\System32\drivers\etc\hosts` in Windows using VS Code:
 
-   In WSL:
+    ```text
+    ::1 booking.umu
+    127.0.0.1 booking.umu
+    ::1 www.booking.umu
+    127.0.0.1 www.booking.umu
+    ```
 
-   ```bash
-   npm run dev
-   ```
+    ...and save as Administrator.
 
-9. **Access Booking@UMU**
+8.  **Run Vite dev server**
 
-   Visit:
+    In WSL:
 
-   - `booking.umu/` in your Windows or Chrome browser. (it should show as a trusted HTTPS site).
+    ```bash
+    npm run dev
+    ```
+
+9.  **Access Booking@UMU**
+
+    Visit:
+    - `booking.umu/` in your Windows or Chrome browser. (it should show as a trusted HTTPS site).
 
 ---
 
@@ -458,7 +478,7 @@ Install composer and node using your preferred method, then:
      npm install
    ```
 
-   Create DB in MySQL and update `.env` as shown in the [Windows Users](#Windows (WSL2 + Ubuntu + Nginx)) Section 4 above, then:
+   Create DB in MySQL and update `.env` as shown in the [Windows Users](#Windows "WSL2 + Ubuntu + Nginx") Section 4 above, then:
 
    ```bash
    php artisan migrate
@@ -466,39 +486,40 @@ Install composer and node using your preferred method, then:
 
 4. **Generate cert and configure Nginx on macOS**
 
-    From a convenient directory (e.g. your project root):
+   From a convenient directory (e.g. your project root):
 
-    ```bash
-    cd ~/Sites/booking-umu   # or your actual project path
-    mkcert booking.umu
-    ```
-    This will create files like:
-    - `booking.umu.pem – the certificate`
-    - `booking.umu-key.pem – the private key`
- 
+   ```bash
+   cd ~/Sites/booking-umu   # or your actual project path
+   mkcert booking.umu
+   ```
+
+   This will create files like:
+   - `booking.umu.pem – the certificate`
+   - `booking.umu-key.pem – the private key`
+
    Create a dedicated directory for Nginx SSL certs and move the files:
 
-    ```bash
-      sudo mkdir -p /opt/homebrew/etc/nginx/certs
-      sudo mv booking.umu.pem /opt/homebrew/etc/nginx/certs/
-      sudo mv booking.umu-key.pem /opt/homebrew/etc/nginx/certs/
-    ```
+   ```bash
+     sudo mkdir -p /opt/homebrew/etc/nginx/certs
+     sudo mv booking.umu.pem /opt/homebrew/etc/nginx/certs/
+     sudo mv booking.umu-key.pem /opt/homebrew/etc/nginx/certs/
+   ```
 
-    Adjust ownership/permissions:
+   Adjust ownership/permissions:
 
-    ```bash
-      sudo chown root:wheel /opt/homebrew/etc/nginx/certs/booking.umu*
-      sudo chmod 600 /opt/homebrew/etc/nginx/certs/booking.umu-key.pem
-      sudo chmod 644 /opt/homebrew/etc/nginx/certs/booking.umu.pem
-    ```
-
+   ```bash
+     sudo chown root:wheel /opt/homebrew/etc/nginx/certs/booking.umu*
+     sudo chmod 600 /opt/homebrew/etc/nginx/certs/booking.umu-key.pem
+     sudo chmod 644 /opt/homebrew/etc/nginx/certs/booking.umu.pem
+   ```
 
    Create booking-umu.conf for nginx:
 
    ```bash
    sudo nano /opt/homebrew/etc/nginx/servers/booking-umu.conf
    ```
-    \*Press 'Option + M' to toggle mouse support *on* or *off*
+
+   \*Press 'Option + M' to toggle mouse support _on_ or _off_
 
    Paste:
 
@@ -535,52 +556,58 @@ Install composer and node using your preferred method, then:
             }
    }
    ```
-    
-    \*On line 14 above, replace '<your-mac-username\>' with your actual username. From Terminal, run `whoami` to determine your username.
-  
-    \*To save and exit *Nano Editor*, press 'CTRL + X' then 'y' then 'ENTER' Key to save and exit nano.
+
+   \*On line 14 above, replace '<your-mac-username\>' with your actual username. From Terminal, run `whoami` to determine your username.
+
+   \*To save and exit _Nano Editor_, press 'CTRL + X' then 'y' then 'ENTER' Key to save and exit nano.
 
    Make sure `nginx.conf` includes the `servers` directory:
 
    From Terminal, run
-    ```bash
-      sudo nano /opt/homebrew/etc/nginx/nginx.conf
-    ```
-    or
-    ```bash
-      sudo nano /usr/local/etc/nginx/nginx.conf
-    ```
-    Find the http { ... } block
-    
-    You’ll see something like:
 
-    ```text
-      http {
-          include       mime.types;
-          default_type  application/octet-stream;
-
-          # ... other config ...
-      }
+   ```bash
+     sudo nano /opt/homebrew/etc/nginx/nginx.conf
    ```
-    Add the servers include inside that `http { ... }` block (not outside), add:
 
-    ```text
-        include /opt/homebrew/etc/nginx/servers/*.conf;
-    ```
-    Full example:
+   or
 
-    ```text
-      http {
-            include       mime.types;
-            default_type  application/octet-stream;
+   ```bash
+     sudo nano /usr/local/etc/nginx/nginx.conf
+   ```
 
-            # existing settings...
+   Find the http { ... } block
 
-            include /opt/homebrew/etc/nginx/servers/*.conf;
-      }
-    ```
-   
-    Save and exit ('Ctrl+O', 'Enter' key, 'Ctrl+X' in nano editor).
+   You’ll see something like:
+
+   ```text
+     http {
+         include       mime.types;
+         default_type  application/octet-stream;
+
+         # ... other config ...
+     }
+   ```
+
+   Add the servers include inside that `http { ... }` block (not outside), add:
+
+   ```text
+       include /opt/homebrew/etc/nginx/servers/*.conf;
+   ```
+
+   Full example:
+
+   ```text
+     http {
+           include       mime.types;
+           default_type  application/octet-stream;
+
+           # existing settings...
+
+           include /opt/homebrew/etc/nginx/servers/*.conf;
+     }
+   ```
+
+   Save and exit ('Ctrl+O', 'Enter' key, 'Ctrl+X' in nano editor).
 
    Restart Nginx:
 
@@ -593,26 +620,29 @@ Install composer and node using your preferred method, then:
 
    Open the file:
 
-    ```bash
-      sudo nano /etc/hosts
-    ```
-    \*Press 'Option + M' to toggle mouse support *on* or *off*
+   ```bash
+     sudo nano /etc/hosts
+   ```
 
-    Move the cursor to the bottom (or wherever you want) and add this line:
+   \*Press 'Option + M' to toggle mouse support _on_ or _off_
 
-    ```text
-      127.0.0.1   booking.umu
-    ```
-    Make sure there’s at least one space or tab between 127.0.0.1 and booking.umu.
-   
-    \*To save and exit *Nano Editor*, press 'CTRL + X' then 'y' then 'ENTER' Key to save and exit nano.
-    
-    Flush DNS cache so changes apply immediately:
+   Move the cursor to the bottom (or wherever you want) and add this line:
 
-    ```bash
-      sudo dscacheutil -flushcache
-      sudo killall -HUP mDNSResponder
-    ```
+   ```text
+     127.0.0.1   booking.umu
+   ```
+
+   Make sure there’s at least one space or tab between 127.0.0.1 and booking.umu.
+
+   \*To save and exit _Nano Editor_, press 'CTRL + X' then 'y' then 'ENTER' Key to save and exit nano.
+
+   Flush DNS cache so changes apply immediately:
+
+   ```bash
+     sudo dscacheutil -flushcache
+     sudo killall -HUP mDNSResponder
+   ```
+
 6. **Run Vite dev server**
 
    ```bash
@@ -672,18 +702,18 @@ Checklist:
 
 - Ensure PHP-FPM service is running (name may vary):
 
-    Windows + Linux
+  Windows + Linux
 
   ```bash
   sudo service php8.2-fpm status   # example
   ```
 
   Mac
+
   ```bash
   php -v
   brew list | grep php
   ```
-
 
 - Match `fastcgi_pass` in Nginx to the actual socket or port (e.g. `unix:/var/run/php/php-fpm.sock` or `127.0.0.1:9000`).
 
@@ -798,4 +828,4 @@ If you’re stuck:
   - Relevant log output (e.g., Nginx error log, `storage/logs/laravel.log`)
 - Alternatively, ask AI, and verify responses.
 
->We’re building Booking@UMU as a learning project and a real system; clear questions and detailed issues help everyone move faster.
+> We’re building Booking@UMU as a learning project and a real system; clear questions and detailed issues help everyone move faster.

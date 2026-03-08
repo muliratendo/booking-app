@@ -55,7 +55,7 @@ The goal is a maintainable, open-source codebase that can be extended by future 
 ## Repository Structure
 
 ```text
-booking-app/
+booking-umu/
 ├──booking/
 │  ├──app/                # Laravel backend (models, controllers, policies, etc.)
 │  ├──bootstrap/
@@ -90,8 +90,8 @@ booking-app/
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:muliratendo/booking-app.git
-cd booking-app/booking
+git clone git@github.com:muliratendo/booking-umu.git
+cd booking-umu/booking
 ```
 
 ### 2. Install Backend Dependencies
