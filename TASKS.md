@@ -312,11 +312,11 @@ _Assignee (Backend Dev):_ `________________________`
 
 ---
 
-## QA Devs (4)
+## Quality Assurance (QA) Devs (4)
 
 ### QA Dev 1 – Student flows
 
-**QA-1.1 – Test design (student)**
+**QA-1.1 – Manually test design (student)**
 
 - [ ] Write test cases for:
   - [ ] Viewing hostels and details.
