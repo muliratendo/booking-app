@@ -34,7 +34,7 @@ Use this file to:
   - [ ] Admin/warden hostel views
 - [ ] Add a short architecture note in `docs/` (or `README` section) for hostel module.
 
-_Assignee (Lead Dev):_ `________________________`
+_Assignee (Lead Dev):_ `<u>@muliratendo</u>`
 
 ---
 
@@ -50,7 +50,7 @@ _Assignee (Lead Dev):_ `________________________`
 - [ ] Confirm constraints: capacity, uniqueness of bed per semester, gender rules.
 - [ ] Approve schema before shared DB migrations.
 
-_Assignee (Lead Dev):_ `________________________`
+_Assignee (Lead Dev):_ `<u>@nakasistellah-06</u>`
 
 ---
 
@@ -76,33 +76,33 @@ _Assignee (Lead Dev):_ `________________________`
 
 ## Frontend Devs (4)
 
-All hostel frontend tasks are in **React + Inertia** under `resources/js/Pages/Hostels/...` and shared components under `resources/js/Components/...`.
+All hostel frontend tasks are in **React + Inertia** under `resources/js/pages/hostels/...` and shared components under `resources/js/Components/...`.
 
 ### FE Dev 1 – Student hostel discovery & booking
 
 **FE-1.1 – Hostel listing**
 
-- [ ] Create `Hostels/Student/HostelList.jsx` page.
+- [x] Create `hostels/student/hostellist.jsx` page.
 - [ ] Display list of available hostels with basic info (name, location, type, gender, capacity/occupancy).
 - [ ] Add filters for gender, price band (if available), and on-campus/off-campus.
 
-_Assignee (Frontend Dev):_ `________________________`
+_Assignee (Frontend Dev):_ `<u>@oryemsimonpeter</u>`
 
 **FE-1.2 – Hostel detail & apply page**
 
-- [ ] Create `Hostels/Student/HostelDetail.jsx`.
+- [x] Create `hostels/student/hosteldetail.jsx`.
 - [ ] Show hostel details: rooms types, capacity, simple rules (placeholder content initially).
 - [ ] Add “Apply for Hostel” button leading to application form.
 
-_Assignee (Frontend Dev):_ `________________________`
+_Assignee (Frontend Dev):_ `<u>@kagereanthony49</u>`
 
 **FE-1.3 – Application form & status**
 
-- [ ] Create `Hostels/Student/ApplicationForm.jsx`.
+- [x] Create `hostels/student/hostelapplicationform.jsx`.
 - [ ] Fields: semester, hostel preference(s), roommate preference (optional), notes.
 - [ ] Display application status page: not applied / pending / allocated / waitlisted / rejected.
 
-_Assignee (Frontend Dev):_ `________________________`
+_Assignee (Frontend Dev):_ `<u>@fredrickavaran</u>`
 
 ---
 
@@ -110,7 +110,7 @@ _Assignee (Frontend Dev):_ `________________________`
 
 **FE-2.1 – Hostel overview dashboard**
 
-- [ ] Create `Hostels/Admin/Dashboard.jsx`.
+- [ ] Create `hostels/admin/dashboard.jsx`.
 - [ ] Show cards with metrics: total beds, occupied, vacant, waitlisted students, open maintenance issues.
 - [ ] Link cards to detailed pages (rooms, allocations, maintenance).
 
@@ -118,7 +118,7 @@ _Assignee (Frontend Dev):_ `________________________`
 
 **FE-2.2 – Room & bed management UI**
 
-- [ ] Create `Hostels/Admin/RoomList.jsx`.
+- [ ] Create `hostels/admin/roomlist.jsx`.
 - [ ] Show table of rooms with hostel, room number, capacity, gender, occupancy, status.
 - [ ] Add actions for blocking/unblocking beds/rooms (frontend only; wires into backend).
 
@@ -126,7 +126,7 @@ _Assignee (Frontend Dev):_ `________________________`
 
 **FE-2.3 – Allocation management UI**
 
-- [ ] Create `Hostels/Admin/Allocations.jsx`.
+- [ ] Create `hostels/admin/allocations.jsx`.
 - [ ] Table with filters by semester, hostel, student, status.
 - [ ] Actions: approve, reject, reassign, evict, mark as checked-in/checked-out (wired to backend routes when ready).
 - [ ] Confirm dialogs for destructive actions.
@@ -139,7 +139,7 @@ _Assignee (Frontend Dev):_ `________________________`
 
 **FE-3.1 – Semesters management UI**
 
-- [ ] Create `Hostels/Admin/Semesters.jsx`.
+- [ ] Create `hostels/admin/semesters.jsx`.
 - [ ] List, create, edit, and deactivate semesters.
 - [ ] Validate date ranges client-side (start < end).
 
@@ -147,7 +147,7 @@ _Assignee (Frontend Dev):_ `________________________`
 
 **FE-3.2 – Hostel metadata management**
 
-- [ ] Create `Hostels/Admin/HostelSettings.jsx`.
+- [ ] Create `hostels/admin/hostelsettings.jsx`.
 - [ ] Manage hostel attributes (name, location, gender policy, capacity metadata).
 - [ ] Provide simple form validations and feedback.
 
@@ -155,8 +155,8 @@ _Assignee (Frontend Dev):_ `________________________`
 
 **FE-3.3 – Maintenance requests UI**
 
-- [ ] Student side: simple form to log room/hostel issue (e.g. `Hostels/Student/MaintenanceForm.jsx`).
-- [ ] Admin side: `Hostels/Admin/Maintenance.jsx` showing list and statuses.
+- [ ] Student side: simple form to log room/hostel issue (e.g. `hostels/student/maintenanceform.jsx`).
+- [ ] Admin side: `hostels/admin/maintenance.jsx` showing list and statuses.
 - [ ] Actions to mark as in-progress/resolved.
 
 _Assignee (Frontend Dev):_ `________________________`

@@ -225,6 +225,8 @@ All approved contributors should use SSH keys to interact with GitHub (clone, pu
 
 Below is a **step-by-step** guide for running Booking@UMU locally with Nginx on Windows (via WSL2), macOS, or Linux.
 
+> **Note:** You do not need to run Booking@UMU locally to contribute to the project. You can use a regular code editor + Git + GitHub to submit pull requests.
+
 ### Common prerequisites
 
 You will need:
@@ -259,6 +261,7 @@ _After Installing the prerequisites depending on your OS(refer to AI or Google S
         wsl --install
         wsl
     ```
+    **Restart your computer after installation.**
 
 2.  Install Composer, Node, mkcert
     Install composer and node using your preferred method, then:
