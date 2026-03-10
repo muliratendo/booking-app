@@ -34,7 +34,7 @@ Use this file to:
   - [ ] Admin/warden hostel views
 - [ ] Add a short architecture note in `docs/` (or `README` section) for hostel module.
 
-_Assignee (Lead Dev):_ <u>[Mulira Tendo Mukisa](@muliratendo)</u>
+_Assignee (Lead Dev):_ <u>[Mulira Tendo Mukisa](https://github.com/muliratendo)</u>
 
 ---
 
@@ -50,7 +50,7 @@ _Assignee (Lead Dev):_ <u>[Mulira Tendo Mukisa](@muliratendo)</u>
 - [ ] Confirm constraints: capacity, uniqueness of bed per semester, gender rules.
 - [ ] Approve schema before shared DB migrations.
 
-_Assignee (Lead Dev):_ <u>[Nakasi Stella](@nakasistellah-06)</u>
+_Assignee (Lead Dev):_ <u>[Nakasi Stella](https://github.com/nakasistellah-06)</u>
 
 ---
 
@@ -60,7 +60,7 @@ _Assignee (Lead Dev):_ <u>[Nakasi Stella](@nakasistellah-06)</u>
 - [ ] Finalize branch/PR checklist for hostel feature branches.
 - [ ] Add or update sections in `CONTRIBUTING.md` for hostel-specific expectations.
 
-_Assignee (Lead Dev):_ <u>[Mulira Tendo Mukisa](@muliratendo)</u>
+_Assignee (Lead Dev):_ <u>[Mulira Tendo Mukisa](https://github.com/muliratendo)</u>
 
 ---
 
@@ -70,7 +70,7 @@ _Assignee (Lead Dev):_ <u>[Mulira Tendo Mukisa](@muliratendo)</u>
 - [ ] Decide logging strategy for allocation changes and evictions.
 - [ ] Identify notification events (allocation approved, eviction, maintenance resolved) for a later notifications phase.
 
-_Assignee (Lead Dev):_ <u>[Nakasi Stella](@nakasistellah-06)</u>
+_Assignee (Lead Dev):_ <u>[Nakasi Stella](https://github.com/nakasistellah-06)</u>
 
 ---
 
@@ -86,7 +86,7 @@ All hostel frontend tasks are in **React + Inertia** under `resources/js/pages/h
 - [ ] Display list of available hostels with basic info (name, location, type, gender, capacity/occupancy).
 - [ ] Add filters for gender, price band (if available), and on-campus/off-campus.
 
-_Assignee (Frontend Dev):_ <u>[Oryem Simon Peter](@oryemsimonpeter)</u>
+_Assignee (Frontend Dev):_ <u>[Oryem Simon Peter](https://github.com/oryemsimonpeter)</u>
 
 **FE-1.2 – Hostel detail & apply page**
 
@@ -94,7 +94,7 @@ _Assignee (Frontend Dev):_ <u>[Oryem Simon Peter](@oryemsimonpeter)</u>
 - [ ] Show hostel details: rooms types, capacity, simple rules (placeholder content initially).
 - [ ] Add “Apply for Hostel” button leading to application form.
 
-_Assignee (Frontend Dev):_ <u>[Kagere Anthony](@kagereanthony49)</u>
+_Assignee (Frontend Dev):_ <u>[Kagere Anthony](https://github.com/kagereanthony49)</u>
 
 **FE-1.3 – Application form & status**
 
@@ -102,7 +102,7 @@ _Assignee (Frontend Dev):_ <u>[Kagere Anthony](@kagereanthony49)</u>
 - [ ] Fields: semester, hostel preference(s), roommate preference (optional), notes.
 - [ ] Display application status page: not applied / pending / allocated / waitlisted / rejected.
 
-_Assignee (Frontend Dev):_ <u>[Muhuma Fredrick](@fredrickavaran)</u>
+_Assignee (Frontend Dev):_ <u>[Muhuma Fredrick](https://github.com/fredrickavaran)</u>
 
 ---
 
@@ -207,7 +207,7 @@ All hostel backend tasks are in Laravel: models, migrations, factories, policies
 - [ ] Define relationships (`Hostel hasMany Room`, `Room hasMany Bed`, etc.).
 - [ ] Add foreign keys and constraints.
 
-_Assignee (Backend Dev):_ <u>[Kayegi Priscilla](@Priscillak418)</u>
+_Assignee (Backend Dev):_ <u>[Kayegi Priscilla](https://github.com/Priscillak418)</u>
 
 **BE-1.2 – Seeders & factories**
 
@@ -217,7 +217,7 @@ _Assignee (Backend Dev):_ <u>[Kayegi Priscilla](@Priscillak418)</u>
   - [ ] Rooms with capacity.
   - [ ] Semesters (e.g., Semester 1, Semester 2).
 
-_Assignee (Backend Dev):_ <u>[Nakalawa Seanice Resty](@resty-seanice)</u>
+_Assignee (Backend Dev):_ <u>[Nakalawa Seanice Resty](https://github.com/resty-seanice)</u>
 
 ---
 
@@ -228,7 +228,7 @@ _Assignee (Backend Dev):_ <u>[Nakalawa Seanice Resty](@resty-seanice)</u>
 - [ ] Create `allocations` migration & model: student_id, bed_id, semester_id, status, timestamps.
 - [ ] Add constraints to enforce one active allocation per student per semester.
 
-_Assignee (Backend Dev):_ <u>[Collins Iya](@collins-iya)</u>
+_Assignee (Backend Dev):_ <u>[Collins Iya](https://github.com/collins-iya)</u>
 
 **BE-2.2 – Allocation service & rules**
 
@@ -237,7 +237,7 @@ _Assignee (Backend Dev):_ <u>[Collins Iya](@collins-iya)</u>
   - [ ] Handle basic waitlist logic (e.g., FIFO when no beds free).
 - [ ] Wrap allocation operations in DB transactions.
 
-_Assignee (Backend Dev):_ <u>[Mugenyi Dulton](@dultonthegreat-cs-it)</u>
+_Assignee (Backend Dev):_ <u>[Mugenyi Dulton](https://github.com/dultonthegreat-cs-it)</u>
 
 **BE-2.3 – Student controllers & Inertia responses**
 
@@ -324,7 +324,7 @@ _Assignee (Backend Dev):_ `________________________`
   - [ ] Viewing allocation status.
 - [ ] Include edge cases (full hostels, invalid inputs).
 
-_Assignee (QA Dev):_ <u>[Kafumbe Francis](@francis875-code)</u>
+_Assignee (QA Dev):_ <u>[Kafumbe Francis](https://github.com/francis875-code)</u>
 
 **QA-1.2 – Automated tests (student)**
 
@@ -334,7 +334,7 @@ _Assignee (QA Dev):_ <u>[Kafumbe Francis](@francis875-code)</u>
   - [ ] Allocation status view.
 - [ ] Use factories/seeders to set up data.
 
-_Assignee (QA Dev):_ <u>[Kalyango Stewart](@Kalyango-Stewart-J)</u>
+_Assignee (QA Dev):_ <u>[Kalyango Stewart](https://github.com/Kalyango-Stewart-J)</u>
 
 ---
 
@@ -347,7 +347,7 @@ _Assignee (QA Dev):_ <u>[Kalyango Stewart](@Kalyango-Stewart-J)</u>
   - [ ] Reassign bed, evict, check-in/out.
   - [ ] Enforcing “one bed per student per semester” and gender rules.
 
-_Assignee (QA Dev):_ <u>[Kalyango Fred](@Fred-Bode)</u>
+_Assignee (QA Dev):_ <u>[Kalyango Fred](https://github.com/Fred-Bode)</u>
 
 **QA-2.2 – Automated tests (admin)**
 
@@ -356,7 +356,7 @@ _Assignee (QA Dev):_ <u>[Kalyango Fred](@Fred-Bode)</u>
   - [ ] Allocation actions change DB correctly.
 - [ ] Assert constraints (no overbooking, no double allocations).
 
-_Assignee (QA Dev):_ <u>[Mutebwa Charles](@CharlesKJunior)</u>
+_Assignee (QA Dev):_ <u>[Mutebwa Charles](https://github.com/CharlesKJunior)</u>
 
 ---
 
@@ -415,7 +415,7 @@ All QA devs:
   - [ ] Student: “My Hostel”, “Hostel Applications”, “Hostel Maintenance”.
   - [ ] Admin: “Hostel Dashboard”, “Rooms & Beds”, “Allocations”, “Maintenance”, “Settings”.
 
-_Assignee (Design/UX Dev):_ <u>[Atuhaire Doreen](@atuhaire-doreen)</u>
+_Assignee (Design/UX Dev):_ <u>[Atuhaire Doreen](https://github.com/atuhaire-doreen)</u>
 
 **UX-1.2 – Flow diagrams**
 
@@ -424,7 +424,7 @@ _Assignee (Design/UX Dev):_ <u>[Atuhaire Doreen](@atuhaire-doreen)</u>
 - [ ] Admin flows:
   - [ ] View apps → Allocate → Manage occupancy → Handle maintenance.
 
-_Assignee (Design/UX Dev):_ <u>[Aine Nyakato Kagumya](@aine-nyakato)</u>
+_Assignee (Design/UX Dev):_ <u>[Aine Nyakato Kagumya](https://github.com/aine-nyakato)</u>
 
 ---
 
