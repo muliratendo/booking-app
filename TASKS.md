@@ -114,7 +114,7 @@ _Assignee (Frontend Dev):_ <u>[Muhuma Fredrick](https://github.com/fredrickavara
 - [ ] Show cards with metrics: total beds, occupied, vacant, waitlisted students, open maintenance issues.
 - [ ] Link cards to detailed pages (rooms, allocations, maintenance).
 
-_Assignee (Frontend Dev):_ `________________________`
+_Assignee (Frontend Dev):_ <u>[Murungi Benson](https://github.com/murungibenson06-cmd)</u>
 
 **FE-2.2 – Room & bed management UI**
 
