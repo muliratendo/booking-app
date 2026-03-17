@@ -217,7 +217,7 @@ _Assignee (Backend Dev):_ <u>[Kayegi Priscilla](https://github.com/Priscillak418
   - [ ] Rooms with capacity.
   - [ ] Semesters (e.g., Semester 1, Semester 2).
 
-_Assignee (Backend Dev):_ <u>[Nakalawa Seanice Resty](https://github.com/resty-seanice)</u>
+_Assignee (Backend Dev):_ <u>[Nakalawa Seanice Resty](https://github.com/resty-mukasa)</u>
 
 ---
 
@@ -347,7 +347,7 @@ _Assignee (QA Dev):_ <u>[Kalyango Stewart](https://github.com/Kalyango-Stewart-J
   - [ ] Reassign bed, evict, check-in/out.
   - [ ] Enforcing “one bed per student per semester” and gender rules.
 
-_Assignee (QA Dev):_ <u>[Kalyango Fred](https://github.com/Fred-Bode)</u>
+_Assignee (QA Dev):_ <u>[Kalyango Fred](https://github.com/FredBode)</u>
 
 **QA-2.2 – Automated tests (admin)**
 
@@ -369,7 +369,7 @@ _Assignee (QA Dev):_ <u>[Mutebwa Charles](https://github.com/CharlesKJunior)</u>
   - [ ] Wardens updating statuses.
   - [ ] Validation on semesters and hostel config forms.
 
-_Assignee (QA Dev):_ `________________________`
+_Assignee (QA Dev):_ <u>[Kisitu Vianney](https://github.com/kiv88-tech)</u>
 
 **QA-3.2 – Automated tests (maintenance & config)**
 
@@ -424,7 +424,7 @@ _Assignee (Design/UX Dev):_ <u>[Atuhaire Doreen](https://github.com/atuhaire-dor
 - [ ] Admin flows:
   - [ ] View apps → Allocate → Manage occupancy → Handle maintenance.
 
-_Assignee (Design/UX Dev):_ <u>[Aine Nyakato Kagumya](https://github.com/aine-nyakato)</u>
+_Assignee (Design/UX Dev):_ <u>[Aine Nyakato Kagumya](https://github.com/Aine88)</u>
 
 ---
 
@@ -437,7 +437,7 @@ _Assignee (Design/UX Dev):_ <u>[Aine Nyakato Kagumya](https://github.com/aine-ny
   - [ ] Application form & status.
   - [ ] Maintenance report form.
 
-_Assignee (Design/UX Dev):_ `________________________`
+_Assignee (Design/UX Dev):_ <u>[Kyomuhendo Judith](https://github.com/jkyomuhendo94-glitch)</u>
 
 **UX-2.2 – States and feedback**
 
