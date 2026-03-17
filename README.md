@@ -1,6 +1,6 @@
 # Booking@UMU Platform
 
-[🏠 THIS FILE](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./TASKS.md)
+[🏠 THIS FILE](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md)
 
 A modular, multi-institution booking and allocation platform for **Uganda Martyrs University** and its affiliates — including on-campus hostels and Nkozi Hospital. It unifies academic resource booking, hostel allocation, and hospital services into a single **Laravel + React (Inertia)** application.
 

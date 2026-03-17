@@ -1,6 +1,6 @@
 # Contributing to Booking@UMU
 
-[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 THIS FILE](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./TASKS.md)
+[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 THIS FILE](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md)
 
 Thank you for your interest in contributing to **Booking@UMU**. This document explains how we work together, how to run the project locally, and how to troubleshoot common issues.
 

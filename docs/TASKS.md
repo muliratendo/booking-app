@@ -1,6 +1,6 @@
 # TASKS – Booking@UMU (Hostel Allocation & Booking Module)
 
-[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 THIS FILE](./TASKS.md)
+[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 THIS FILE](./docs/TASKS.md)
 
 - [Overview](#overview)
 - [Lead Devs (2)](#lead-devs-2)
@@ -228,7 +228,7 @@ _Assignee (Backend Dev):_ <u>[Nakalawa Seanice Resty](https://github.com/resty-m
 - [ ] Create `allocations` migration & model: student_id, bed_id, semester_id, status, timestamps.
 - [ ] Add constraints to enforce one active allocation per student per semester.
 
-_Assignee (Backend Dev):_ <u>[Collins Iya](https://github.com/collins-iya)</u>
+_Assignee (Backend Dev):_ <u>[Collins Iya](https://github.com/collinsiya3-commits)</u>
 
 **BE-2.2 – Allocation service & rules**
 
