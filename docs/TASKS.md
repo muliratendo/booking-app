@@ -228,7 +228,7 @@ _Assignee (Backend Dev):_ <u>[Nakalawa Seanice Resty](https://github.com/resty-m
 - [ ] Create `allocations` migration & model: student_id, bed_id, semester_id, status, timestamps.
 - [ ] Add constraints to enforce one active allocation per student per semester.
 
-_Assignee (Backend Dev):_ <u>[Collins Iya](https://github.com/collinsiya3-commits)</u>
+_Assignee (Backend Dev):_ <u>[Colin Iya](https://github.com/collinsiya3-commits)</u>
 
 **BE-2.2 – Allocation service & rules**
 
