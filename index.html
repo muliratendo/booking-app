@@ -575,6 +575,15 @@
             }
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const { createClient } = supabase
+        const supabaseClient = createClient(
+            'https://kecwoyhikrixbwscamwl.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlY3dveWhpa3JpeGJ3c2NhbXdsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMDE5ODksImV4cCI6MjA4OTc3Nzk4OX0.wNmODTsWUbjOyyh_LP5G9OM0xWLJI862ZP1VzHwTVhE'
+        )
+    </script>
+
 </head>
 
 <body>
@@ -594,15 +603,16 @@
 
                 <h1 class="hero-title">Booking@UMU is Coming Soon</h1>
                 <p class="hero-subtitle">
-                    One platform for room booking, hostel allocation, and hospital services &mdash; built for Uganda
-                    Martyrs University and Nkozi Hospital.
+                    One platform for academic room booking, hostel allocation, and property management &mdash; built for
+                    Uganda
+                    Martyrs University.
                 </p>
 
                 <!-- Thematic Details List -->
                 <div class="modules-list" aria-label="Platform modules">
                     <div class="module-badge">
                         <span class="module-icon" aria-hidden="true">✦</span>
-                        <span><strong>Academic Booking:</strong> rooms, labs, equipment, conference hall</span>
+                        <span><strong>Academic Booking:</strong> lecture rooms, labs, conference halls</span>
                     </div>
                     <div class="module-badge">
                         <span class="module-icon" aria-hidden="true">✦</span>
@@ -610,8 +620,7 @@
                     </div>
                     <div class="module-badge">
                         <span class="module-icon" aria-hidden="true">✦</span>
-                        <span><strong>Hospital Services:</strong> appointments, consultations, emergency
-                            escalation</span>
+                        <span><strong>Campus Property Management:</strong> equipment, vehicles, and others</span>
                     </div>
                 </div>
 
@@ -676,7 +685,7 @@
 
         // --- 1. COUNTDOWN LOGIC ---
         // Set target date to exactly 30 days after March 7th, 2026
-        const targetDate = new Date('2026-04-06T00:00:00');
+        const targetDate = new Date('2026-05-03T00:00:00');
 
         // Cache DOM elements
         const uiDays = document.getElementById('val-days');
@@ -773,17 +782,21 @@
             }
 
             try {
-                const formData = new FormData(notifyForm);
+                // insert into Supabase
+                const { error } = await supabaseClient
+                    .from('launch_notifications')
+                    .insert({ email: emailValue })
 
-                const response = await fetch('/notify.php', {
-                    method: 'POST',
-                    body: formData,
-                });
+                if (error) {
+                    console.error(error)
 
-                const text = await response.text();
-
-                if (!response.ok) {
-                    displayToast(text || 'Server error. Please try again.', false);
+                    if (error.code === '23505') {
+                        displayToast('You are already subscribed. We\'ll be in touch!', true)
+                    } else if (error.message?.includes('row-level security')) {
+                        displayToast('Configuration error. Please contact site Admin to subscribe.', false)
+                    } else {
+                        displayToast('Server error. Please try again.', false)
+                    }
                     return;
                 }
 
