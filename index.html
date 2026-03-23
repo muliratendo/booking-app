@@ -583,6 +583,7 @@
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlY3dveWhpa3JpeGJ3c2NhbXdsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMDE5ODksImV4cCI6MjA4OTc3Nzk4OX0.wNmODTsWUbjOyyh_LP5G9OM0xWLJI862ZP1VzHwTVhE'
         )
     </script>
+      
 
 </head>
 
@@ -645,7 +646,7 @@
                 </div>
 
                 <!-- Call to Action -->
-                <div class="cta-area">
+                <div class="cta-area" id="notify">
                     <button class="cta-button" id="trigger-notify" aria-expanded="false" aria-controls="notify-form">
                         Notify Me at Launch
                     </button>
@@ -654,7 +655,7 @@
                         <input type="email" id="email-input" name="email" class="email-input"
                             placeholder="Enter your email address" aria-label="Email address for launch notification"
                             required>
-                        <button type="submit" class="submit-button" aria-label="Submit email">Submit</button>
+                        <button type="submit" class="submit-button" aria-label="Submit email">Join Wait List</button>
                     </form>
 
                     <!-- Feedback message container -->
@@ -908,7 +909,15 @@
         setCanvasDimensions();
         renderFrame();
 
-    </script>
+        window.addEventListener('DOMContentLoaded', () => {
+          if (window.location.hash === '#notify') {
+                notifyForm.classList.add('active');
+                triggerNotifyBtn.style.display = 'none'; // hide the initial CTA
+                triggerNotifyBtn.setAttribute('aria-expanded', 'true');
+                emailField.focus(); // help smooth UX
+          }
+        })
+      </script>
 </body>
 
 </html>

@@ -1,8 +1,16 @@
-# Booking@UMU Platform
+![Booking@UMU preview](assets/preview.png)
+
+---
 
 [🏠 THIS FILE](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md)
 
-A modular, multi-institution booking and allocation platform for **Uganda Martyrs University** and its affiliates — including on-campus hostels and Nkozi Hospital. It unifies academic resource booking, hostel allocation, and hospital services into a single **Laravel + React (Inertia)** application.
+---
+
+Booking@UMU is a modular, multi-institution booking and allocation platform for **Uganda Martyrs University** and its affiliates — including on-campus hostels and Nkozi Hospital. It unifies academic resource booking, hostel allocation, and hospital services into a single **Laravel + React (Inertia)** application.
+
+
+| Join the wait list: [Booking@UMU Wait List](https://muliratendo.github.io/booking-umu/#notify) |
+|:------------------------------------------------------------------------------------------------:|
 
 ---
 
@@ -247,3 +255,7 @@ SOFTWARE.
 ```
 
 See the [LICENSE](./LICENSE) file in the repository root for the full license text. 
+
+---
+
+[![Launch subscription QR](assets/qr-booking-umu.png)](https://muliratendo.github.io/booking-umu/#notify)
