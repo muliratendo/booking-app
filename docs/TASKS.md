@@ -213,7 +213,7 @@ _Assignee (Backend Dev):_ <u>[Kayegi Priscilla](https://github.com/Priscillak418
 
 - [ ] Factories for hostels, rooms, beds, semesters.
 - [ ] Seed realistic sample data for dev and QA:
-  - [ ] A few hostels (male/female/mixed).
+  - [x] A few hostels (male/female/mixed).
   - [ ] Rooms with capacity.
   - [ ] Semesters (e.g., Semester 1, Semester 2).
 
