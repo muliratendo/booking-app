@@ -219,6 +219,19 @@ All approved contributors should use SSH keys to interact with GitHub (clone, pu
 
     From now on, always clone using the SSH URL. Continue below to clone the repo.
 
+    ```bash
+    git clone git@github.com:muliratendo/booking-umu.git
+    ```
+
+    ```bash
+    cd booking-umu/booking
+    git switch <personal-branch-name>
+    ```
+
+6.  Install Laravel Extension
+
+    In your IDE(VsCode, Antigravity, etc), Select the Extensions tab in the left sidebar and search for Laravel Extension. Install it.
+
 ---
 
 ## How to Run Booking@UMU Locally
