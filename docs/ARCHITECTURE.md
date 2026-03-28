@@ -1,6 +1,6 @@
 # Booking@UMU — Hostel Module Architecture
 
-[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📐 THIS FILE](./docs/ARCHITECTURE.md)
+[🏠 README](../README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](../CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./TASKS.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📐 THIS FILE](./ARCHITECTURE.md)
 
 ---
 
