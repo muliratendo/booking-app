@@ -2,7 +2,7 @@
 
 ---
 
-[🏠 THIS FILE](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md)
+[🏠 THIS FILE](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📐 ARCHITECTURE](./docs/ARCHITECTURE.md)
 
 ---
 

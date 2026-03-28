@@ -1,6 +1,6 @@
 # Contributing to Booking@UMU
 
-[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 THIS FILE](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md)
+[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 THIS FILE](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📐 ARCHITECTURE](./docs/ARCHITECTURE.md)
 
 Thank you for your interest in contributing to **Booking@UMU**. This document explains how we work together, how to run the project locally, and how to troubleshoot common issues.
 
@@ -32,6 +32,60 @@ We use feature branches and Pull Requests (PRs) on top of a protected `main` bra
 
 For a high-level project overview and setup, see **[README.md](./README.md)**.  
 For the current work breakdown and assignments, see **[TASKS.md](./TASKS.md)**.
+
+---
+
+## Hostel Module Expectations
+
+### Domain Rules You Must Know
+
+Before contributing any hostel code, read `docs/ARCHITECTURE.md`. Every contributor working on this module is expected to know:
+
+1. **The 9 core business rules** (BR-1 through BR-9) — especially BR-1 (one bed per semester), BR-7 (only `allocated → checked_in`), and BR-8 (checkout triggers waitlist promotion).
+2. **The allocation state machine** — `pending_approval → allocated → checked_in → checked_out`. Never skip a state.
+3. **Role scope** — Wardens see and modify only their own hostel. Admins are system-wide. Students see only their own data. This must be enforced in policies, not just in the UI.
+
+### What Requires a Lead Dev Review
+
+The following changes require **at least one lead dev approval** before merging, regardless of who opens the PR:
+
+- Any change to `AllocationService`
+- Any new or modified migration
+- Any change to `AllocationPolicy`, `RoomPolicy`, or role/permission definitions
+- Any new route group or middleware assignment
+- Any change to `allocation.status` enum values
+
+
+### Hostel Pages File Convention
+
+All hostel React pages live under `resources/js/Pages/` in subfolders matching the user role:
+
+- Student pages → `Pages/Student/`
+- Admin pages → `Pages/Admin/`
+- Warden pages → `Pages/Warden/`
+
+Do **not** create pages directly under `Pages/hostels/` (the old flat structure from initial scaffolding — this is being migrated).
+
+### Inertia Props Convention
+
+Every controller passing data to a hostel page must pass:
+
+1. The primary resource (e.g. `allocation`, `application`, `hostel`)
+2. A `flash` key for success/error messages (use `session()->flash()`)
+3. Any enums or status lists the page needs as explicit props — never compute business logic in the React component
+```php
+// Good
+return Inertia::render('Student/Allocation/Show', [
+    'allocation'       => AllocationResource::make($allocation),
+    'availableActions' => $this->resolveAvailableActions($allocation),
+    'flash'            => session('flash'),
+]);
+
+// Bad — pushing logic into the component
+return Inertia::render('Student/Allocation/Show', [
+    'allocation' => $allocation, // raw model, no resource
+]);
+```
 
 ---
 
@@ -118,7 +172,7 @@ Branch types:
 - `feature/academic-booking-list`
 - `feature/hospital-emergency-flow`
 - `bugfix/hostel-allocation-off-by-one`
-- `docs/update-api-section`
+- `docs/update api section`
 
 ### Basic Workflow
 
@@ -132,29 +186,234 @@ Branch types:
 
 ---
 
+## Hostel Module — Branch and PR Checklist
+
+### Branch Naming for Hostel Features
+
+All hostel module branches must be prefixed with the module and task ID:
+
+```
+feature/hostel-<short-description>
+bugfix/hostel-<short-description>
+```
+
+**Examples:**
+
+```bash
+feature/hostel-allocation-service-room-preference
+feature/hostel-application-form-room-select
+bugfix/hostel-double-allocation-race-condition
+docs/hostel-contributing-standards
+```
+
+
+***
+
+### Pre-PR Checklist (author completes before opening PR)
+
+Copy this into every hostel PR description:
+
+```markdown
+## Hostel Module PR Checklist
+
+### Code
+- [ ] Branch is up to date with `main` (`git pull origin main`)
+- [ ] No debug code, `dd()`, `var_dump()`, `console.log()` left in
+- [ ] No hardcoded user IDs, hostel IDs, or bed IDs
+- [ ] Status values use enums (PHP) or `AllocationStatus` constants (JS) — no raw strings
+- [ ] All DB mutations touching allocations or beds use `DB::transaction()`
+
+### Business Rules
+- [ ] If touching `AllocationService`: BR-1, BR-3, BR-4, BR-5 still enforced
+- [ ] If touching allocation status transitions: BR-7 and BR-8 guards are in place
+- [ ] If adding an admin override: BR-9 `admin_notes` field is required and validated
+- [ ] If touching warden actions: BR-17 hostel-scope check is applied in the policy
+
+### Laravel (backend PRs)
+- [ ] New routes added to the correct route group (`student`, `admin`, `warden`)
+- [ ] FormRequest used for validation (no inline `$request->validate()` in controllers)
+- [ ] New models have a factory
+- [ ] Migrations are reversible (`down()` method works)
+- [ ] Policy written and registered for any new model action
+- [ ] Feature test added or updated for the changed endpoint
+
+### React (frontend PRs)
+- [ ] Page component uses `useForm` (not raw axios) for form submissions
+- [ ] Props destructured and clearly named at top of component
+- [ ] Status pills use the shared `<StatusPill>` component
+- [ ] Loading and error states handled (not just happy path)
+- [ ] Responsive on mobile (checked in browser devtools)
+- [ ] Screenshot(s) attached to PR for any UI change
+
+### Testing
+- [ ] `php artisan test` passes locally with no failures
+- [ ] New feature test covers the main success path AND at least one failure/edge case
+- [ ] If the change touches allocation constraints: a test asserts the constraint is enforced
+
+### Migrations (if PR includes a migration)
+- [ ] Reviewed and approved by LD-2 (Nakasi Stella) before merging
+- [ ] No column renames or drops without a deprecation comment
+- [ ] Foreign key constraints included
+```
+
+
+***
+
+### Reviewer Checklist (reviewer completes before approving)
+
+```markdown
+## Reviewer Checklist
+- [ ] Code matches the task description in TASKS.md
+- [ ] Business rules for the hostel module not silently bypassed
+- [ ] No N+1 queries (check for missing `->with()` eager loads on allocation/room/bed relationships)
+- [ ] Warden-scoped actions cannot access other hostels (tested or clearly enforced in policy)
+- [ ] Migration (if any) reviewed and schema matches ARCHITECTURE.md
+- [ ] At least one lead dev approved before merge if PR touches: migrations, AllocationService, policies, or role definitions
+```
+
+---
+
 ## Coding Standards
 
-### PHP / Laravel
+### PHP / Laravel Standards
 
-- Follow PSR-12 where applicable.
-- Keep controllers thin: use Form Requests, Services, and Resources.
-- Prefer Eloquent relationships and query scopes.
-- Use migrations and seeders for DB changes; never modify DB manually in production.
+**Folder and class structure:**
 
-### JavaScript / React
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── Student/          ← student-facing controllers
+│   │   ├── Admin/            ← admin-only controllers
+│   │   └── Warden/           ← warden-scoped controllers
+│   ├── Requests/             ← one FormRequest per action (StoreApplicationRequest, etc.)
+│   └── Resources/            ← API/Inertia resource transformers
+├── Models/                   ← one model per domain entity
+├── Services/                 ← business logic (AllocationService, MaintenanceEscalationService)
+├── Policies/                 ← one policy per model
+└── Enums/                    ← PHP 8.1 backed enums for status fields
+```
 
-- Use modern ES syntax and React functional components with hooks.
-- Prefer composition over deeply nested components.
-- Keep components small and focused.
-- Use a shared components library under `resources/js/Components` for buttons, layouts, tables, etc.
+**Naming conventions:**
 
-### General
 
-- Write meaningful commit messages:
-  - `Add hostel allocation table`
-  - `Fix null pointer in emergency escalation handler`
-- Add or update tests when you change behavior.
-- Keep PRs focused on one logical change.
+| Thing | Convention | Example |
+| :-- | :-- | :-- |
+| Controller | `PascalCase` + `Controller` suffix | `AllocationController` |
+| FormRequest | `Verb` + `Model` + `Request` | `StoreApplicationRequest` |
+| Service | `Model` + `Service` | `AllocationService` |
+| Policy | `Model` + `Policy` | `AllocationPolicy` |
+| Migration | `snake_case` timestamp prefix | `2026_03_28_create_allocations_table` |
+| Model | `PascalCase` singular | `Allocation` |
+| Relationship method | `camelCase` plural/singular | `$hostel->rooms()`, `$bed->allocation()` |
+| Route name | `dot.notation` prefixed by role | `student.applications.store`, `admin.allocations.index` |
+| Enum case | `SCREAMING_SNAKE_CASE` | `AllocationStatus::PENDING_APPROVAL` |
+
+**Rules:**
+
+- Controllers must stay thin: no business logic, no raw queries. Delegate to Services.
+- All state transitions (e.g. `allocated → checked_in`) must go through a Service method, never set `status` directly in a controller.
+- All DB mutations that involve more than one table must be wrapped in `DB::transaction()`.
+- Use `lockForUpdate()` inside transactions when reading then writing allocation or bed data (prevents double-allocation race conditions).
+- Every new model must have a corresponding `Factory` and be registered in `DatabaseSeeder`.
+- Use PHP 8.1 enums for `status` fields — never raw string comparisons.
+
+```php
+// Good — enum-guarded transition in AllocationService
+public function checkIn(Allocation $allocation): void
+{
+    throw_unless(
+        $allocation->status === AllocationStatus::ALLOCATED,
+        new InvalidAllocationTransitionException('BR-7: only ALLOCATED → CHECKED_IN is valid')
+    );
+    $allocation->update(['status' => AllocationStatus::CHECKED_IN, 'checked_in_at' => now()]);
+}
+
+// Bad — status set directly in controller
+$allocation->update(['status' => 'checked_in']);
+```
+
+
+***
+
+### JavaScript / React Standards
+
+**Folder and file structure:**
+
+```
+resources/js/
+├── Pages/
+│   ├── Student/
+│   │   ├── Dashboard/Index.jsx
+│   │   ├── Hostels/
+│   │   │   ├── Index.jsx        ← hostel list
+│   │   │   └── Show.jsx         ← hostel detail
+│   │   ├── Applications/
+│   │   │   ├── Index.jsx        ← application list
+│   │   │   ├── Show.jsx         ← application detail
+│   │   │   └── Create.jsx       ← application form
+│   │   └── Allocation/
+│   │       └── Show.jsx
+│   ├── Admin/
+│   │   ├── Dashboard/Index.jsx
+│   │   ├── Allocations/Index.jsx
+│   │   └── ...
+│   └── Warden/
+│       ├── Dashboard/Index.jsx
+│       └── Allocations/Pending.jsx
+├── Components/
+│   ├── Hostel/                  ← hostel-domain components
+│   │   ├── StatusPill.jsx
+│   │   ├── RoomCard.jsx
+│   │   └── AllocationTimeline.jsx
+│   ├── UI/                      ← generic reusable UI
+│   │   ├── Table.jsx
+│   │   ├── Modal.jsx
+│   │   ├── Button.jsx
+│   │   └── FilterBar.jsx
+│   └── Layouts/
+│       ├── StudentLayout.jsx
+│       ├── AdminLayout.jsx
+│       └── WardenLayout.jsx
+└── Hooks/
+    ├── useAllocation.js
+    └── useHostelFilters.js
+```
+
+**Naming conventions:**
+
+
+| Thing | Convention | Example |
+| :-- | :-- | :-- |
+| Page component | `PascalCase`, matches Laravel view name | `Applications/Show.jsx` |
+| Reusable component | `PascalCase` noun | `StatusPill.jsx`, `RoomCard.jsx` |
+| Custom hook | `camelCase` prefixed with `use` | `useAllocation.js` |
+| Prop names | `camelCase` | `allocationStatus`, `hostelId` |
+| Event handlers | `handle` + event | `handleSubmit`, `handleApprove` |
+| Inertia form | `useForm` from `@inertiajs/react` | always; no manual `axios` for form posts |
+| CSS classes | Tailwind utility-first; no custom CSS unless component-specific |  |
+
+**Rules:**
+
+- Every Page component must declare its expected Inertia props at the top using destructuring.
+- Never use `axios` directly for form submissions — always use Inertia's `useForm` or `router`.
+- Only use `axios` for non-navigating read requests (e.g. async search/filter that updates local state without a page visit).
+- Keep Page components as orchestrators; extract form logic and display logic into sub-components.
+- All status values (`allocated`, `checked_in`, etc.) must come from a shared constants file, not hardcoded strings:
+
+    ```js
+    // resources/js/constants/allocationStatus.js
+    export const AllocationStatus = {
+      PENDING_APPROVAL: 'pending_approval',
+      ALLOCATED:        'allocated',
+      WAITLISTED:       'waitlisted',
+      CHECKED_IN:       'checked_in',
+      CHECKED_OUT:      'checked_out',
+      REJECTED:         'rejected',
+    };
+    ```
+
+- `StatusPill` must be the single source of truth for status colour mapping — no ad-hoc Tailwind colour classes for statuses outside this component.
 
 ---
 
