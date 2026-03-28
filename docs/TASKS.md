@@ -1,6 +1,6 @@
 # TASKS – Booking@UMU (Hostel Allocation & Booking Module)
 
-[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 THIS FILE](./docs/TASKS.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📐 ARCHITECTURE](./docs/ARCHITECTURE.md)
+[🏠 README](../README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](../CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 THIS FILE](./TASKS.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📐 ARCHITECTURE](./ARCHITECTURE.md)
 
 - [Overview](#overview)
 - [Lead Devs (2)](#lead-devs-2)
