@@ -1,8 +1,6 @@
 # Booking@UMU — Hostel Module Architecture
 
-> **Owner:** [Mulira Tendo Mukisa](https://github.com/muliratendo) (Lead Dev, LD-1)
-> **Status:** Initial draft — reviewed alongside LD-2 schema approval
-> **Last updated:** 2026-03-25
+[🏠 README](./README.md) &nbsp;&nbsp;•&nbsp;&nbsp; [🤝 CONTRIBUTIONS](./CONTRIBUTING.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📋 TASKS](./docs/TASKS.md) &nbsp;&nbsp;•&nbsp;&nbsp; [📐 THIS FILE](./docs/ARCHITECTURE.md)
 
 ---
 
@@ -479,13 +477,17 @@ resources/js/
 │   │   ├── Applications/Create.jsx
 │   │   ├── Applications/Show.jsx
 │   │   ├── Allocation/Show.jsx
-│   │   └── Maintenance/Create.jsx
+│   │   └── Maintenance/
+│   │       ├── Create.jsx
+│   │       └── Index.jsx
 │   └── Admin/
 │       ├── Dashboard.jsx
 │       ├── Hostels/Index.jsx
 │       ├── Rooms/Index.jsx
 │       ├── Beds/Index.jsx
-│       ├── Students/Index.jsx
+│       ├── Students/
+│       │   ├── Show.jsx
+│       │   └── Index.jsx
 │       ├── AcademicTerms/Index.jsx
 │       ├── Applications/Index.jsx
 │       ├── Allocations/Index.jsx
